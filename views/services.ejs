@@ -1,0 +1,28 @@
+<%- include('./partials/header') %>
+
+	<% if (locals.title === "Marketing PR") { %>
+  		<%- include('./partials/services/marketing-pr') %>
+		  <% } else if (locals.title === "Influence Marketing") { %>
+			<%- include('./partials/services/influence-marketing') %>
+		  <% } else if (locals.title === "Content development") { %>
+			<%- include('./partials/services/content-development') %>
+		  <% } else if (locals.title === "Brand Storytelling") { %>
+			<%- include('./partials/services/brand-storytelling') %>
+		  <% } else if (locals.title === "Online Reputation Management") { %>
+			<%- include('./partials/services/online-reputation-management') %>
+		  <% } else if (locals.title === "Software Development and Web Design") { %>
+			<%- include('./partials/services/software-development-and-web-design') %>
+		  <% } else if (locals.title === "Digital Academy") { %>
+			<%- include('./partials/services/digital-academy') %>
+		  <% } else if (locals.title === "Cihan Metricwire") { %>
+			<%- include('./partials/solutions/cihan-metricwire') %>
+		  <% } else if (locals.title === "Media Intelligence") { %>
+			<%- include('./partials/solutions/media-intelligence') %>
+		  <% } else if (locals.title === "Converged Live Streaming") { %>
+			<%- include('./partials/solutions/converged-live-streaming') %>
+		<% } %>
+
+  <%- include('./partials/newsletter') %>
+
+  <%- include('./partials/footer') %>
+</div>

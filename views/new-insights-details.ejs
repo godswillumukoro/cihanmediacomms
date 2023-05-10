@@ -1,0 +1,37 @@
+<%- include('./partials/header') %>
+
+<!--
+			=============================================
+				Theme Inner Banner
+			==============================================
+			-->
+            <div class="inner-banner-three text-center p-30">
+                <div class="bg-wrapper text-center">
+                  <div class="container">
+                    <div class="title-style-five">
+                      <h2 class="main-title tx-dark fw-bold">New Insights</h2>
+                    </div>
+                    <!-- <p class="fs-20 mt-30 lg-mt-20">
+                                    <strong>Category</strong>: Technology
+                                  </p> -->
+                  </div>
+                </div>
+              </div>
+              <!-- /.inner-banner-three -->
+
+	<% if (locals.title === "Unlocking Consumer Insights") { %>
+  		<%- include('./partials/new-insights/unlocking-consumer-insights') %>
+		  <% } else if (locals.title === "The Power of Collaboration in Growth PR") { %>
+			<%- include('./partials/new-insights/the-power-of-collaboration-in-growth-pr') %>
+		  <% } else if (locals.title === "How PR Pros Can Navigate TikTok’s") { %>
+			<%- include('./partials/new-insights/how-pr-pros-can-navigate-tiktoks') %>
+		  <% } else if (locals.title === "Get Ready for a Digital Revolution") { %>
+			<%- include('./partials/new-insights/get-ready-for-a-digital-revolution') %>
+		  <% } else if (locals.title === "The Future of Mobile") { %>
+			<%- include('./partials/new-insights/the-future-of-mobile') %>
+		<% } %>
+
+  <%- include('./partials/newsletter') %>
+
+  <%- include('./partials/footer') %>
+</div>
