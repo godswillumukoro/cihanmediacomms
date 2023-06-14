@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= locals.title %></title>
+
+    <style>
+      html {
+        color-scheme: dark;
+      }
+
+      body {
+        color: #eee;
+        font-size: 1.123rem;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        line-height: 1.5;
+      }
+
+      .table-wrapper {
+        width: min(900px, 100% - 3rem);
+        margin-inline: auto;
+      }
+
+      /* .table-container {
+        max-width: 100%;
+        overflow: scroll;
+      } */
+
+      table {
+        border-collapse: collapse;
+        background-color: #323232;
+      }
+
+      caption,
+      th,
+      td {
+        padding: 1.4rem;
+      }
+
+      caption,
+      th {
+        text-align: start;
+      }
+
+      caption {
+        background: hsl(0 0% 0%);
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      th {
+        background: hsl(0 0% 0% / 0.5);
+      }
+
+      tr:nth-of-type(2n) {
+        background: hsl(0 0% 0% / 0.05);
+      }
+
+      @media (max-width: 650px) {
+        th {
+          display: none;
+        }
+        td {
+          display: grid;
+          grid-template-columns: 17ch auto;
+          gap: 0.5rem;
+          padding: 0.75rem 1rem;
+        }
+        td:first-child {
+          padding-top: 2rem;
+        }
+        td:last-child {
+          padding-bottom: 2rem;
+        }
+
+        td::before {
+          content: attr(data-cell) ": ";
+          font-weight: 700;
+          text-transform: capitalize;
+        }
+      }
+      .page-button {
+        margin: 2rem 0.5rem 2rem 0;
+        padding: 0.35em 1.5em;
+        font-size: 1.6rem;
+      }
+    </style>
+     
+  </head>
+  <body>
+    <main>
+      <div class="table-wrapper">
+        <h1>Dashboard</h1>
+        <table>
+          <caption>
+            Submitted Contact Forms
+          </caption>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+          </tr>
+          <% contactMessages.forEach(function(message){ %>
+          <tr>
+            <td data-cell="name"><%= message.name %></td>
+            <td data-cell="email"><%=message.email%></td>
+            <td data-cell="message"><%=message.message%></td>
+          </tr>
+          <% }); %>
+        </table>
+
+        <!-- <div>
+          <button class="page-button">Prev</button>
+          <button class="page-button">Next</button>
+        </div> -->
+      </div>
+    </main>
+
+    <!-- Javascript code for next and previous button -->
+    <script>
+      let images = [
+        "https://codelearningpoint.com/uploads/1627415311.jpg",
+        "https://codelearningpoint.com/uploads/1627415323.jpg",
+        "https://codelearningpoint.com/uploads/1627415302.jpg",
+      ];
+      let imageTag = document.querySelector(".imageTag");
+      let i = 0;
+
+      function next() {
+        if (i >= images.length - 1) {
+          return false;
+        }
+        i++;
+        imageTag.setAttribute("src", images[i]);
+      }
+      function previous() {
+        if (i <= 0) {
+          return false;
+        }
+        i--;
+        imageTag.setAttribute("src", images[i]);
+      }
+    </script>
+  </body>
+</html>

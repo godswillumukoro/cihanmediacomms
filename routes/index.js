@@ -1,5 +1,19 @@
 const express = require("express");
+// const multer = require("multer");
 const router = express.Router();
+// const uploadDestination = multer({ dest: "uploaded-documents/" });
+const { connectToDatabase, getDatabase } = require("../database");
+
+// connect to db
+let database;
+
+connectToDatabase((error) => {
+  // listen for requests after successfully connecting to DB
+  if (!error) {
+    database = getDatabase();
+    console.log("MongoDB successfully connected");
+  }
+});
 
 router.get("/", (req, res) => {
   res.render("index", {
@@ -55,7 +69,7 @@ router.get("/services/digital-academy", (req, res) => {
 });
 
 router.get("/solutions/cihan-meet", (req, res) => {
-  res.redirect('https://cihanmeet.cihanmediacomms.com/');
+  res.redirect("https://cihanmeet.cihanmediacomms.com/");
 });
 router.get("/solutions/cihan-metricwire", (req, res) => {
   res.render("services", {
@@ -83,11 +97,14 @@ router.get("/new-insights/unlocking-consumer-insights", (req, res) => {
     title: "Unlocking Consumer Insights",
   });
 });
-router.get("/new-insights/the-power-of-collaboration-in-growth-pr", (req, res) => {
-  res.render("new-insights-details", {
-    title: "The Power of Collaboration in Growth PR",
-  });
-});
+router.get(
+  "/new-insights/the-power-of-collaboration-in-growth-pr",
+  (req, res) => {
+    res.render("new-insights-details", {
+      title: "The Power of Collaboration in Growth PR",
+    });
+  }
+);
 router.get("/new-insights/how-pr-pros-can-navigate-tiktoks", (req, res) => {
   res.render("new-insights-details", {
     title: "How PR Pros Can Navigate TikTok’s",
@@ -107,6 +124,59 @@ router.get("/new-insights/the-future-of-mobile", (req, res) => {
 router.get("/contact", (req, res) => {
   res.render("contact", {
     title: "Contact us",
+  });
+});
+
+// uploadDestination.single("documents"),
+router.post("/contact-form", (req, res) => {
+  const contactFormData = req.body;
+  contactFormData.createdAt = new Date();
+
+  database
+    .collection("contactForm")
+    .insertOne(contactFormData)
+    .then((result) => {
+      res.render("success", {
+        title: "Success!!",
+      });
+    })
+    .catch((erorr) => {
+      res.status(500).json({
+        status: "error",
+        message: "Unable to submit contact form",
+      });
+    });
+});
+
+router.get("/dashboard", (req, res) => {
+  // pagination
+  // const page = req.query.page || 0;
+  // const messagesPerPage = 10;
+  let contactMessages = [];
+
+  try {
+    database
+      .collection("contactForm")
+      .find()
+      .sort({ createdAt: -1 })
+      // .skip(page * messagesPerPage) //skip books per page
+      // .limit(messagesPerPage) //limit the number of books displayed per page
+      .forEach((message) => contactMessages.push(message))
+      .then(() => {
+        // res.status(200).json(contactMessages);
+        res.render("SubmittedForms", {
+          title: "Submitted Forms",
+          contactMessages,
+        });
+      });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.get("/*", (req, res) => {
+  res.render("404", {
+    title: "404 | Page not found",
   });
 });
 

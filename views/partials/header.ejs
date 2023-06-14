@@ -1,155 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="keywords"
-        content="Digital Communications consulting firm, GrowthPR and digital communications agency that combines cutting-edge technology with a keen focus on influence">
-    <meta name="description"
-        content="We are a TechPR and Digital Communications consulting firm that leverages technologies with a focus on Influence. We conceptualize, build, grow, influence target group decisions and perceptions.">
-    <meta property="og:site_name" content="cihanmediacomms">
-    <meta property="og:url" content="https://cihanmediacomms.com/">
-    <meta property="og:type" content="website">
-    <meta property="og:title"
-        content="cihanmediacomms - We are a TechPR and Digital Communications consulting firm that leverages technologies with a focus on Influence. We conceptualize, build, grow, influence target group decisions and perceptions.">
-    <meta name='og:image' content='images/logo.png'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="keywords"
+      content="Digital Communications consulting firm, GrowthPR and digital communications agency that combines cutting-edge technology with a keen focus on influence"
+    />
+    <meta
+      name="description"
+      content="We are a TechPR and Digital Communications consulting firm that leverages technologies with a focus on Influence. We conceptualize, build, grow, influence target group decisions and perceptions."
+    />
+    <meta property="og:site_name" content="cihanmediacomms" />
+    <meta property="og:url" content="https://cihanmediacomms.com/" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="cihanmediacomms - We are a TechPR and Digital Communications consulting firm that leverages technologies with a focus on Influence. We conceptualize, build, grow, influence target group decisions and perceptions."
+    />
+    <meta name="og:image" content="images/logo.png" />
     <!-- For IE -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- For Resposive Device -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- For Window Tab Color -->
     <!-- Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#1d2b40">
+    <meta name="theme-color" content="#1d2b40" />
     <!-- Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="#1d2b40">
+    <meta name="msapplication-navbutton-color" content="#1d2b40" />
     <!-- iOS Safari -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="#1d2b40">
-    <title>
-        <%= locals.title %> | Cihan Media Group
-    </title>
+    <meta name="apple-mobile-web-app-status-bar-style" content="#1d2b40" />
+    <title><%= locals.title %> | Cihan Media Group</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="56x56" href="/images/logo2.png">
+    <link rel="icon" type="image/png" sizes="56x56" href="/images/logo2.png" />
     <!-- Main style sheet -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" media="all" />
     <!-- responsive style sheet -->
-    <link rel="stylesheet" type="text/css" href="/css/responsive.css" media="all">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/responsive.css"
+      media="all"
+    />
 
     <!-- Fix Internet Explorer ______________________________________-->
     <!--[if lt IE 9]>
-			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-			<script src="vendor/html5shiv.js"></script>
-			<script src="vendor/respond.js"></script>
-		<![endif]-->
-</head>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="vendor/html5shiv.js"></script>
+      <script src="vendor/respond.js"></script>
+    <![endif]-->
 
-<body>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+      function onSubmit(token) {
+        document.getElementById("contact-form").submit();
+      }
+    </script>
+  </head>
+
+  <body>
     <div class="main-page-wrapper">
-        <!-- ===================================================
+      <!-- ===================================================
 
 				Loading Transition
 			==================================================== -->
-            <% if(locals.title === 'Contact us'){} else{ %>
-        <div id="preloader">
-            <div id="ctn-preloader" class="ctn-preloader">
-                <div class="animation-preloader">
-                    <!-- <div class="icon"><img src="images/logo.png" alt="" class="m-auto d-block" width="40"></div> -->
-                    <div class="txt-loading mt-3">
-                        <span data-text-preloader="C" class="letters-loading">
-                            C
-                        </span>
-                        <span data-text-preloader="I" class="letters-loading">
-                            I
-                        </span>
-                        <span data-text-preloader="H" class="letters-loading">
-                            H
-                        </span>
-                        <span data-text-preloader="A" class="letters-loading">
-                            A
-                        </span>
-                        <span data-text-preloader="N" class="letters-loading">
-                            N
-                        </span>
-                    </div>
-                </div>
+      <% if(locals.title === 'Contact us'){} else{ %>
+      <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+          <div class="animation-preloader">
+            <!-- <div class="icon"><img src="images/logo.png" alt="" class="m-auto d-block" width="40"></div> -->
+            <div class="txt-loading mt-3">
+              <span data-text-preloader="C" class="letters-loading"> C </span>
+              <span data-text-preloader="I" class="letters-loading"> I </span>
+              <span data-text-preloader="H" class="letters-loading"> H </span>
+              <span data-text-preloader="A" class="letters-loading"> A </span>
+              <span data-text-preloader="N" class="letters-loading"> N </span>
             </div>
+          </div>
         </div>
-        <%}%>
+      </div>
+      <%}%>
 
-
-
-        <!--
+      <!--
 			=============================================
 				Theme Main Menu
 			==============================================
 			-->
-        <header class="theme-main-menu sticky-menu theme-menu-one">
-            <div class="inner-content position-relative">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="logo order-lg-0"><a href="/" class="d-block"><img src="/images/logo.png"
-                                alt="" width="95"></a></div>
+      <header class="theme-main-menu sticky-menu theme-menu-one">
+        <div class="inner-content position-relative">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="logo order-lg-0">
+              <a href="/" class="d-block"
+                ><img src="/images/logo.png" alt="" width="95"
+              /></a>
+            </div>
 
-                    <div class="right-widget d-flex align-items-center order-lg-3">
-                        <a href="/contact"
-                            class="contact-btn-one fs-16 fw-500 text-white tran3s d-none d-lg-block">Contact us</a>
-                    </div> <!-- /.right-widget -->
+            <div class="right-widget d-flex align-items-center order-lg-3">
+              <a
+                href="/contact"
+                class="contact-btn-one fs-16 fw-500 text-white tran3s d-none d-lg-block"
+                >Contact us</a
+              >
+            </div>
+            <!-- /.right-widget -->
 
-                    <nav class="navbar navbar-expand-lg order-lg-2">
-                        <button class="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <span></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="d-block d-lg-none">
-                                    <div class="logo"><a href="/" class="d-block"><img
-                                                src="/images/logo.png" alt="" width="95"></a></div>
-                                </li>
+            <nav class="navbar navbar-expand-lg order-lg-2">
+              <button
+                class="navbar-toggler d-block d-lg-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="d-block d-lg-none">
+                    <div class="logo">
+                      <a href="/" class="d-block"
+                        ><img src="/images/logo.png" alt="" width="95"
+                      /></a>
+                    </div>
+                  </li>
 
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown"
-                                        data-bs-auto-close="outside" aria-expanded="false">About</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/about" class="dropdown-item"><span>Our Story</span></a></li>
-                                        <li><a href="/gallery" class="dropdown-item"><span>Our Gallery</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                        data-bs-auto-close="outside" aria-expanded="false">Services</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/services/marketing-pr" class="dropdown-item"><span>Marketing PR</span></a></li>
-                                        <li><a href="/services/influence-marketing" class="dropdown-item"><span>Influence Marketing</span></a></li>
-                                        <li><a href="/services/content-development" class="dropdown-item"><span>Content Development</span></a></li>
-                                        <li><a href="/services/brand-storytelling" class="dropdown-item"><span>Brand Storytelling</span></a></li>
-                                        <li><a href="/services/online-reputation-management" class="dropdown-item"><span>Online Reputation Management</span></a></li>
-                                        <li><a href="/services/software-development-and-web-design" class="dropdown-item"><span>Software Development & Web Design</span></a></li>
-                                        <li><a href="/services/digital-academy" class="dropdown-item"><span>Digital Academy</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                        data-bs-auto-close="outside" aria-expanded="false">Solutions</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/solutions/cihan-meet" class="dropdown-item"><span>Cihan Meet</span></a></li>
-                                        <li><a href="/solutions/cihan-metricwire" class="dropdown-item"><span>Cihan Metricwire</span></a></li>
-                                        <li><a href="/solutions/media-intelligence" class="dropdown-item"><span>Media Intelligence</span></a></li>
-                                        <li><a href="/solutions/converged-live-streaming" class="dropdown-item"><span>Converged Live Streaming</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" href="/new-insights" role="button">New Insights</a>
-                                </li>
-                            </ul>
-                            <!-- Mobile Content -->
-                            <div class="mobile-content d-block d-lg-none">
-                                <div class="d-flex flex-column align-items-center justify-content-center mt-70">
-                                    <a href="/contact"
-                                        class="contact-btn-one fs-16 fw-500 text-white tran3s">Contact us</a>
-                                </div>
-                            </div> <!-- /.mobile-content -->
-                        </div>
-                    </nav>
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="outside"
+                      aria-expanded="false"
+                      >About</a
+                    >
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="/about" class="dropdown-item"
+                          ><span>Our Story</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="/gallery" class="dropdown-item"
+                          ><span>Our Gallery</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="outside"
+                      aria-expanded="false"
+                      >Services</a
+                    >
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="/services/marketing-pr" class="dropdown-item"
+                          ><span>Marketing PR</span></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="/services/influence-marketing"
+                          class="dropdown-item"
+                          ><span>Influence Marketing</span></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="/services/content-development"
+                          class="dropdown-item"
+                          ><span>Content Development</span></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="/services/brand-storytelling"
+                          class="dropdown-item"
+                          ><span>Brand Storytelling</span></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="/services/online-reputation-management"
+                          class="dropdown-item"
+                          ><span>Online Reputation Management</span></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="/services/software-development-and-web-design"
+                          class="dropdown-item"
+                          ><span>Software Development & Web Design</span></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="/services/digital-academy"
+                          class="dropdown-item"
+                          ><span>Digital Academy</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="outside"
+                      aria-expanded="false"
+                      >Solutions</a
+                    >
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="/solutions/cihan-meet" class="dropdown-item"
+                          ><span>Cihan Meet</span></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="/solutions/cihan-metricwire"
+                          class="dropdown-item"
+                          ><span>Cihan Metricwire</span></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="/solutions/media-intelligence"
+                          class="dropdown-item"
+                          ><span>Media Intelligence</span></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="/solutions/converged-live-streaming"
+                          class="dropdown-item"
+                          ><span>Converged Live Streaming</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="/new-insights" role="button"
+                      >New Insights</a
+                    >
+                  </li>
+                </ul>
+                <!-- Mobile Content -->
+                <div class="mobile-content d-block d-lg-none">
+                  <div
+                    class="d-flex flex-column align-items-center justify-content-center mt-70"
+                  >
+                    <a
+                      href="/contact"
+                      class="contact-btn-one fs-16 fw-500 text-white tran3s"
+                      >Contact us</a
+                    >
+                  </div>
                 </div>
-            </div> <!-- /.inner-content -->
-        </header> <!-- /.theme-main-menu -->
+                <!-- /.mobile-content -->
+              </div>
+            </nav>
+          </div>
+        </div>
+        <!-- /.inner-content -->
+      </header>
+      <!-- /.theme-main-menu -->
+    </div>
+  </body>
+</html>
