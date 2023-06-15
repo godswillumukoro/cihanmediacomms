@@ -3,6 +3,9 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
 const indexRouter = require("./routes/index");
 
 app.set("views", "views");
@@ -15,6 +18,16 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+
+
+// Sanitize against NoSQL query injection
+app.use(mongoSanitize())
+
+// Sanitize against Cross=site Scripting Attack XXS
+app.use(xss())
+
+// Secure HTTP header
+app.use(helmet());
 
 app.use("/", indexRouter);
 
