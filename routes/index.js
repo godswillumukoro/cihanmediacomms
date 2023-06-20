@@ -1,6 +1,11 @@
 const path = require("path");
 const express = require("express");
 const router = express.Router();
+const { Resend } = require("resend");
+
+// resend email package
+const resend = new Resend(process.env.RESEND_KEY);
+
 // const uploadDestination = multer({ dest: "uploaded-documents/" });
 const { connectToDatabase, getDatabase } = require("../database");
 const multer = require("multer");
@@ -52,10 +57,20 @@ connectToDatabase((error) => {
   }
 });
 
-router.get("/", (req, res) => {
-  res.render("index", {
-    title: "Home",
-  });
+router.get("/", async (req, res) => {
+  try {
+    const data = await resend.emails.send({
+      from: "info@cihanmediacomms.com",
+      to: "umukoro6@gmail.com",
+      subject: "hello world",
+      html: "<strong>it works!</strong>",
+    });
+    res.render("index", {
+      title: "Home",
+    });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 router.get("/about", (req, res) => {
@@ -186,9 +201,8 @@ router.post("/cihan-form", (req, res) => {
       } else {
         // cihanFormData.push((uploadedDocumentInfo = req.file));
         const cihanFormData = req.body;
-        cihanFormData.uploadedDocumentInfo = req.file
-  console.log(req.body, req.file);
-
+        cihanFormData.uploadedDocumentInfo = req.file;
+        console.log(req.body, req.file);
 
         database
           .collection("cihanMetricwireForm")
