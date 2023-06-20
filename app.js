@@ -19,12 +19,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-
 // Sanitize against NoSQL query injection
-app.use(mongoSanitize())
+app.use(mongoSanitize());
 
 // Sanitize against Cross=site Scripting Attack XXS
-app.use(xss())
+app.use(xss());
 
 // Secure HTTP header
 app.use(helmet());

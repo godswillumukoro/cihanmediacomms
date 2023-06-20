@@ -90,7 +90,6 @@
         font-size: 1.6rem;
       }
     </style>
-     
   </head>
   <body>
     <main>
@@ -105,7 +104,7 @@
             <th>Email</th>
             <th>Message</th>
           </tr>
-          <% contactMessages.forEach(function(message){ %>
+          <% cihanMetricwireMessages.forEach(function(message){ %>
           <tr>
             <td data-cell="name"><%= message.name %></td>
             <td data-cell="email"><%=message.email%></td>
@@ -113,38 +112,9 @@
           </tr>
           <% }); %>
         </table>
-
-        <!-- <div>
-          <button class="page-button">Prev</button>
-          <button class="page-button">Next</button>
-        </div> -->
       </div>
+      <!-- not working check -->
+      <img src="../public/uploadFiles/file-1687240849400.png" alt="" />
     </main>
-
-    <!-- Javascript code for next and previous button -->
-    <script>
-      let images = [
-        "https://codelearningpoint.com/uploads/1627415311.jpg",
-        "https://codelearningpoint.com/uploads/1627415323.jpg",
-        "https://codelearningpoint.com/uploads/1627415302.jpg",
-      ];
-      let imageTag = document.querySelector(".imageTag");
-      let i = 0;
-
-      function next() {
-        if (i >= images.length - 1) {
-          return false;
-        }
-        i++;
-        imageTag.setAttribute("src", images[i]);
-      }
-      function previous() {
-        if (i <= 0) {
-          return false;
-        }
-        i--;
-        imageTag.setAttribute("src", images[i]);
-      }
-    </script>
   </body>
 </html>

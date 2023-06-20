@@ -1,8 +1,45 @@
+const path = require("path");
 const express = require("express");
-// const multer = require("multer");
 const router = express.Router();
 // const uploadDestination = multer({ dest: "uploaded-documents/" });
 const { connectToDatabase, getDatabase } = require("../database");
+const multer = require("multer");
+
+// Multer storage
+multerStorage = multer.diskStorage({
+  destination: "./public/uploadFiles/",
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+// Multer upload
+const multerUpload = multer({
+  storage: multerStorage,
+  limits: { fileSize: 2000000 },
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
+  },
+}).single("file");
+
+// Multer filetype check
+function checkFileType(file, cb) {
+  // allowed file extensions
+  const filetypes = /jpeg|jpg|png|gif|pdf/;
+  // check extension
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  // check mimetype
+  const mimetype = filetypes.test(file.mimetype);
+
+  if (mimetype && extname) {
+    return cb(null, true);
+  } else {
+    cb("Error: Only Images and PDFs are allowed");
+  }
+}
 
 // connect to db
 let database;
@@ -76,6 +113,7 @@ router.get("/solutions/cihan-metricwire", (req, res) => {
     title: "Cihan Metricwire",
   });
 });
+
 router.get("/solutions/media-intelligence", (req, res) => {
   res.render("services", {
     title: "Media Intelligence",
@@ -127,7 +165,85 @@ router.get("/contact", (req, res) => {
   });
 });
 
-// uploadDestination.single("documents"),
+router.get("/cihan-form", (re, res) => {
+  res.render("cihan-form", {
+    title: "Cihan Form",
+  });
+});
+
+// post cihan-metricwire form
+router.post("/cihan-form", (req, res) => {
+  // cihanFormData.push(req.body);
+  // cihanFormData.push((createdAt = new Date()));
+
+  // Multer Starts
+  multerUpload(req, res, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (req.file == undefined) {
+        console.log("No file selected");
+      } else {
+        // cihanFormData.push((uploadedDocumentInfo = req.file));
+        const cihanFormData = req.body;
+        cihanFormData.uploadedDocumentInfo = req.file
+  console.log(req.body, req.file);
+
+
+        database
+          .collection("cihanMetricwireForm")
+          .insertOne(cihanFormData)
+          .then((result) => {
+            res.render("success", {
+              title: "Success!!",
+            });
+          })
+          .catch((erorr) => {
+            res.status(500).json({
+              status: "error",
+              message: "Unable to submit contact form",
+            });
+          });
+
+        res.render("success"),
+          {
+            title: "Success!!",
+          };
+      }
+    }
+  });
+  // Multer Ends
+});
+
+//retriving data into dashboard
+router.get("/cihan-form-submissions", (req, res) => {
+  // pagination
+  // const page = req.query.page || 0;
+  // const messagesPerPage = 10;
+  let cihanMetricwireMessages = [];
+
+  try {
+    database
+      .collection("cihanMetricwireForm")
+      .find()
+      .sort({ createdAt: -1 })
+      // .skip(page * messagesPerPage) //skip books per page
+      // .limit(messagesPerPage) //limit the number of books displayed per page
+      .forEach((message) => cihanMetricwireMessages.push(message))
+      .then(() => {
+        // res.status(200).json(cihanMetricwireMessages);
+
+        res.render("get-cihan-form-submissions", {
+          title: "Cihan Form Submissions",
+          cihanMetricwireMessages,
+        });
+      });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// post contact form
 router.post("/contact-form", (req, res) => {
   const contactFormData = req.body;
   contactFormData.createdAt = new Date();
@@ -149,6 +265,12 @@ router.post("/contact-form", (req, res) => {
 });
 
 router.get("/dashboard", (req, res) => {
+  res.render("dashboard", {
+    title: "Dashboard - Form Submissions",
+  });
+});
+
+router.get("/contact-form-submissions", (req, res) => {
   // pagination
   // const page = req.query.page || 0;
   // const messagesPerPage = 10;
@@ -164,8 +286,8 @@ router.get("/dashboard", (req, res) => {
       .forEach((message) => contactMessages.push(message))
       .then(() => {
         // res.status(200).json(contactMessages);
-        res.render("SubmittedForms", {
-          title: "Submitted Forms",
+        res.render("get-contact-form-submissions", {
+          title: "Contact Form Submissions",
           contactMessages,
         });
       });
