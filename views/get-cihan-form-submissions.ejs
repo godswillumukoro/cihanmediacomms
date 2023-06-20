@@ -61,6 +61,11 @@
         background: hsl(0 0% 0% / 0.05);
       }
 
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
       @media (max-width: 650px) {
         th {
           display: none;
@@ -103,18 +108,25 @@
             <th>Name</th>
             <th>Email</th>
             <th>Message</th>
+            <th>Documents</th>
           </tr>
-          <% cihanMetricwireMessages.forEach(function(message){ %>
+          <% cihanMetricwireMessages.forEach(function(data){ %>
           <tr>
-            <td data-cell="name"><%= message.name %></td>
-            <td data-cell="email"><%=message.email%></td>
-            <td data-cell="message"><%=message.message%></td>
+            <td data-cell="name"><%= data.name %></td>
+            <td data-cell="email"><%=data.email%></td>
+            <td data-cell="message"><%=data.message%></td>
+            <td>
+              <img
+                src="<%= 'uploadFiles/' + data.uploadedDocumentInfo.filename %>"
+                alt=""
+                class="td-image"
+              />
+            </td>
           </tr>
           <% }); %>
         </table>
       </div>
       <!-- not working check -->
-      <img src="../public/uploadFiles/file-1687240849400.png" alt="" />
     </main>
   </body>
 </html>
