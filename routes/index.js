@@ -58,19 +58,23 @@ connectToDatabase((error) => {
 });
 
 router.get("/", async (req, res) => {
-  try {
-    const data = await resend.emails.send({
-      from: "info@cihanmediacomms.com",
-      to: "umukoro6@gmail.com",
-      subject: "hello world",
-      html: "<strong>it works!</strong>",
-    });
-    res.render("index", {
-      title: "Home",
-    });
-  } catch (error) {
-    res.status(500).json({ error });
-  }
+  // try {
+  //   const data = await resend.emails.send({
+  //     from: "info@cihanmediacomms.com",
+  //     to: "umukoro6@gmail.com",
+  //     subject: "hello world",
+  //     html: "<strong>it works!</strong>",
+  //   });
+  //   res.render("index", {
+  //     title: "Home",
+  //   });
+  // } catch (error) {
+  //   res.status(500).json({ error });
+  // }
+
+  res.render("index", {
+    title: "Home",
+  });
 });
 
 router.get("/about", (req, res) => {
@@ -267,9 +271,19 @@ router.post("/contact-form", (req, res) => {
     .collection("contactForm")
     .insertOne(contactFormData)
     .then((result) => {
-      res.render("success", {
-        title: "Success!!",
-      });
+      try {
+        const data = resend.emails.send({
+          from: "info@cihanmediacomms.com",
+          to: "umukoro6@gmail.com",
+          subject: "hello world",
+          html: contactFormData,
+        });
+        res.render("success", {
+          title: "Success!!",
+        });
+      } catch (error) {
+        res.status(500).json({ error });
+      }
     })
     .catch((erorr) => {
       res.status(500).json({
