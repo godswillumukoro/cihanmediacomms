@@ -180,7 +180,7 @@ router.get("/contact", (req, res) => {
   });
 });
 
-router.get("/cihan-form", (re, res) => {
+router.get("/cihan-form", (req, res) => {
   res.render("cihan-form", {
     title: "Cihan Form",
   });

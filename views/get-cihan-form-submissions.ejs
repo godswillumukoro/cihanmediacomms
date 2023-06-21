@@ -116,11 +116,31 @@
             <td data-cell="email"><%=data.email%></td>
             <td data-cell="message"><%=data.message%></td>
             <td>
+              <% if(data.uploadedDocumentInfo.mimetype === 'image/jpeg') { %>
               <img
                 src="<%= 'uploadFiles/' + data.uploadedDocumentInfo.filename %>"
                 alt=""
                 class="td-image"
               />
+
+              <% } else if(data.uploadedDocumentInfo.mimetype ===
+              'application/pdf') { %>
+              <object
+                data="<%= 'uploadFiles/' + data.uploadedDocumentInfo.filename %>"
+                type="application/pdf"
+                width="100%"
+                height="500px"
+              >
+                <p>
+                  Unable to display PDF file.
+                  <a
+                    href="<%= 'uploadFiles/' + data.uploadedDocumentInfo.filename %>"
+                    >Download</a
+                  >
+                  instead.
+                </p>
+              </object>
+              <% } %>
             </td>
           </tr>
           <% }); %>
