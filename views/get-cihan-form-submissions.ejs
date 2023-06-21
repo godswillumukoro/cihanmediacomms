@@ -122,7 +122,7 @@
             <td data-cell="title"><%=data.title%></td>
             <td data-cell="caption"><%=data.caption%></td>
             <td data-cell="source"><%=data.source%></td>
-            <td>
+            <td data-cell="file">
               <% if(data.uploadedDocumentInfo.mimetype === 'image/jpeg') { %>
               <img
                 src="<%= 'uploadFiles/' + data.uploadedDocumentInfo.filename %>"
