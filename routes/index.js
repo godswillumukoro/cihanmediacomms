@@ -59,12 +59,12 @@ connectToDatabase((error) => {
 
 router.get("/", async (req, res) => {
   try {
-    // const data = await resend.emails.send({
-    //   from: "info@cihanmediacomms.com",
-    //   to: "umukoro6@gmail.com",
-    //   subject: "hello world",
-    //   html: "<strong>it works!</strong>",
-    // });
+    const data = await resend.emails.send({
+      from: "info@cihanmediacomms.com",
+      to: "umukoro6@gmail.com",
+      subject: "hello world",
+      html: "<strong>it works!</strong>",
+    });
     res.render("index", {
       title: "Home",
     });
@@ -201,6 +201,7 @@ router.post("/cihan-form", (req, res) => {
       } else {
         // cihanFormData.push((uploadedDocumentInfo = req.file));
         const cihanFormData = req.body;
+        cihanFormData.createdAt = new Date();
         cihanFormData.uploadedDocumentInfo = req.file;
         console.log(req.body, req.file);
 
