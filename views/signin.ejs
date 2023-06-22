@@ -1,0 +1,61 @@
+<%- include('./partials/header') %>
+  <div
+    class="user-data-section d-flex align-items-center justify-content-center flex-column position-relative"
+  >
+    <div class="form-wrapper position-relative m-auto">
+      <div class="text-center">
+        <h2 class="tx-dark mb-30 lg-mb-10">Login</h2>
+        <p class="fs-20 tx-dark">
+          For site admins only</a>
+        </p>
+      </div>
+
+	  <a href="/login">Login</a>
+
+      <form action="/login/" class="user-data-form mt-40 lg-mt-30">
+        <div class="row">
+          <div class="col-12">
+            <div class="input-group-meta mb-30">
+              <label>Email</label>
+              <input type="email" placeholder="rshdkabir@gmail.com" />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="input-group-meta mb-25">
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Enter Password"
+                class="pass_log_id"
+              />
+              <span class="placeholder_icon"
+                ><span class="passVicon"
+                  ><img src="images/icon/icon_151.svg" alt="" /></span
+              ></span>
+            </div>
+          </div>
+          <!-- <div class="col-12">
+            <div
+              class="agreement-checkbox d-flex justify-content-between align-items-center"
+            >
+              <div>
+                <input type="checkbox" id="remember" />
+                <label for="remember">Keep me logged in</label>
+              </div>
+              <a href="#">Forget Password?</a>
+            </div> -->
+            <!-- /.agreement-checkbox -->
+          </div>
+          <div class="col-12">
+            <button
+              class="btn-twentyTwo w-100 fw-500 tran3s text-uppercase mt-30"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <%- include('./partials/footer') %>
+  </div>
+</div>

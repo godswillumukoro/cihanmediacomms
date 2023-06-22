@@ -19,9 +19,15 @@
                                     <p>You can find all form submissions here. To begin, pick what form you want to view</p>
                                 </div> <!-- /.title-style-one -->
                             </div>
-                            <!-- <div class="col-lg-6 col-sm-5 ms-auto d-flex justify-content-center justify-content-sm-end">
-                                <a href="blog-v1.html" class="btn-one fw-500">Go to Blog</a>
-                            </div> -->
+                            <% if(isAuthenticated) { %>
+                            <div class="col-lg-6 col-sm-5 ms-auto d-flex justify-content-center justify-content-sm-end">
+                                <a href="/logout/" class="btn-one fw-500">Logout</a>
+                            </div>
+                            <% } else { %>
+                                <div class="col-lg-6 col-sm-5 ms-auto d-flex justify-content-center justify-content-sm-end">
+                                    <a href="/login/" class="btn-one fw-500">Login</a>
+                                </div>
+                            <% } %>
                         </div>
 
                         <div class="row pt-50 lg-pt-30">

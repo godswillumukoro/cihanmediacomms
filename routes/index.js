@@ -71,6 +71,7 @@ router.get("/", async (req, res) => {
   // } catch (error) {
   //   res.status(500).json({ error });
   // }
+  console.log(req.oidc.isAuthenticated());
 
   res.render("index", {
     title: "Home",
@@ -294,9 +295,18 @@ router.post("/contact-form", (req, res) => {
 });
 
 router.get("/dashboard", (req, res) => {
-  res.render("dashboard", {
-    title: "Dashboard - Form Submissions",
-  });
+  if (req.oidc.isAuthenticated()) {
+    res.render("dashboard", {
+      title: "Dashboard - Form Submissions",
+      isAuthenticated: req.oidc.isAuthenticated(),
+    });
+  } else {
+    res.redirect("/login");
+    // res.render("signin", {
+    //   title: "Sign into the admin dashboard - Form Submissions",
+    //   isAuthenticated: req.oidc.isAuthenticated(),
+    // });
+  }
 });
 
 router.get("/contact-form-submissions", (req, res) => {
