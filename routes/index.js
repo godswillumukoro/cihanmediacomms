@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const router = express.Router();
 const { Resend } = require("resend");
+const { requiresAuth } = require("express-openid-connect"); //for ptotected routes
 
 // resend email package
 const resend = new Resend(process.env.RESEND_KEY);
@@ -236,7 +237,7 @@ router.post("/cihan-form", (req, res) => {
 });
 
 //retriving data into dashboard
-router.get("/cihan-form-submissions", (req, res) => {
+router.get("/cihan-form-submissions", requiresAuth(), (req, res) => {
   // pagination
   // const page = req.query.page || 0;
   // const messagesPerPage = 10;
@@ -294,22 +295,15 @@ router.post("/contact-form", (req, res) => {
     });
 });
 
-router.get("/dashboard", (req, res) => {
-  if (req.oidc.isAuthenticated()) {
-    res.render("dashboard", {
-      title: "Dashboard - Form Submissions",
-      isAuthenticated: req.oidc.isAuthenticated(),
-    });
-  } else {
-    res.redirect("/login");
-    // res.render("signin", {
-    //   title: "Sign into the admin dashboard - Form Submissions",
-    //   isAuthenticated: req.oidc.isAuthenticated(),
-    // });
-  }
+router.get("/dashboard", requiresAuth(), (req, res) => {
+  res.render("dashboard", {
+    title: "Dashboard - Form Submissions",
+    isAuthenticated: req.oidc.isAuthenticated(),
+    user: req.oidc.user,
+  });
 });
 
-router.get("/contact-form-submissions", (req, res) => {
+router.get("/contact-form-submissions", requiresAuth(), (req, res) => {
   // pagination
   // const page = req.query.page || 0;
   // const messagesPerPage = 10;
