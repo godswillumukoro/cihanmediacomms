@@ -4,6 +4,46 @@ const router = express.Router();
 const { Resend } = require("resend");
 const { requiresAuth } = require("express-openid-connect"); //for ptotected routes
 
+// pagination middleware
+function paginatedResults(model) {
+  return async (req, res, next) => {
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+
+    //   query
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    //   next / prev
+    const results = {};
+
+    if (endIndex < (await model.countDocuments().exec())) {
+      results.next = {
+        page: page + 1,
+        limit: limit,
+      };
+    }
+
+    if (startIndex > 0) {
+      results.prev = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
+
+    // results.results = model.slice(startIndex, endIndex);
+    try {
+      results.results = await model.find().limit(limit).skip(startIndex).exec();
+      res.paginatedResults = results;
+      next();
+    } catch (error) {
+      results.status(500).json({
+        error: error.message,
+      });
+    }
+  };
+}
+
 // resend email package
 const resend = new Resend(process.env.RESEND_KEY);
 
@@ -241,6 +281,9 @@ router.get("/cihan-form-submissions", requiresAuth(), (req, res) => {
   // pagination
   // const page = req.query.page || 0;
   // const messagesPerPage = 10;
+  const page = parseInt(req.query.page);
+  const messagesPerPage = parseInt(req.query.limit);
+
   let cihanMetricwireMessages = [];
 
   try {
@@ -248,8 +291,8 @@ router.get("/cihan-form-submissions", requiresAuth(), (req, res) => {
       .collection("cihanMetricwireForm")
       .find()
       .sort({ createdAt: -1 })
-      // .skip(page * messagesPerPage) //skip books per page
-      // .limit(messagesPerPage) //limit the number of books displayed per page
+      .skip(page * messagesPerPage) //skip items per page
+      .limit(messagesPerPage) //limit the number of items displayed per page
       .forEach((message) => cihanMetricwireMessages.push(message))
       .then(() => {
         // res.status(200).json(cihanMetricwireMessages);
