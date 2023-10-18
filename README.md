@@ -4,10 +4,10 @@
   Cihan Media
 </h1>
 <h3 align="center">
-  A forward-thinking agency specializing in online growth and communication. Combining cutting-edge technology with a focus on influence, Cihan Media excel at generating ideas, building brands, and shaping public opinion. As a global GrowthPR company, they boast six PRTech platforms and a growing network of publishing partners, continuously advancing PR and digital communication.
+  A forward-thinking agency specializing in online growth and communication. Combining cutting-edge technology with a focus on influence, Cihan Media excels at generating ideas, building brands, and shaping public opinion. As a global GrowthPR company, they boast six PRTech platforms and a growing network of publishing partners, continuously advancing PR and digital communication.
 </h3>
 <p align="center">
-  <a href="https://cihanmediacomms.up.railway.app"><strong>See the site</strong></a> ·
+<!--   <a href="https://cihanmediacomms.up.railway.app"><strong>See the site</strong></a> · -->
   <a href="https://blog.godswillumukoro.com"><strong>Read Godswill's blog</strong></a>
 </p>
 
